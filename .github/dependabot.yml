@@ -1,0 +1,20 @@
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    assignees:
+      - "{{ github.repository_owner }}"
+    reviewers:
+      - "{{ github.repository_owner }}"
+      
+  # Maintain dependencies for npm
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule: 
+      interval: "daily"
+    assignees:
+      - "{{ github.repository_owner }}"
+    reviewers:
+      - "{{ github.repository_owner }}"
