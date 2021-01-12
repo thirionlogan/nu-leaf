@@ -112,7 +112,9 @@
       "src/**/*.{js,jsx,ts,tsx}",
       "!src/**/*.d.ts",
       "server/**/*.{js,jsx,ts,tsx}",
-      "!server/**/*.d.ts"
+      "!server/**/*.d.ts",
+      "!**/reportWebVitals.js",
+      "!**/index.js"
     ],
     "setupFiles": [
       "react-app-polyfill/jsdom"
