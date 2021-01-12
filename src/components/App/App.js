@@ -1,25 +1,33 @@
-import logo from '../../logo.svg';
 import React from 'react';
-import './App.css';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { CssBaseline } from '@material-ui/core';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import LandingPage from '../LandingPage/LandingPage';
+import PageHeader from '../PageHeader/PageHeader';
 
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#009b4f',
+    },
+    secondary: {
+      main: '#009a9b',
+    },
+  },
+});
 function App() {
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <img src={logo} className='App-logo' alt='logo' />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className='App-link'
-          href='https://reactjs.org'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Router>
+        <CssBaseline />
+        <div className='App'>
+          <PageHeader />
+          <Switch>
+            <Route exact path='/' component={LandingPage} />
+          </Switch>
+        </div>
+      </Router>
+    </ThemeProvider>
   );
 }
 
