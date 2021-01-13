@@ -28,8 +28,9 @@ function PageHeader(props) {
             variant='h6'
             className={classes.title}
             component={RouterLink}
-            to='/'>
-              NuLeaf
+            to='/'
+          >
+            NuLeaf
           </Typography>
           <Button variant='contained'>Login</Button>
         </Toolbar>
