@@ -10,18 +10,19 @@ const path = require('path');
 
 const app = express();
 
-// app.use(
-//   helmet({
-//     contentSecurityPolicy: {
-//       directives: {
-//         defaultSrc: ["'self'"],
-//         scriptSrc: [`'self'`, "'unsafe-inline'"],
-//         styleSrc: ["'self'", 'fonts.googleapis.com'],
-//         fontSrc: ["'self'", 'fonts.googleapis.com'],
-//       },
-//     },
-//   })
-// );
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+        'default-src': ["'self'"],
+        'script-src': ["'self'"],
+        'style-src': ["'self'", '*.googleapis.com'],
+        'font-src': ["'self'", '*.googleapis.com'],
+      },
+    },
+  })
+);
 app.use(cookieParser());
 app.use(
   session({
