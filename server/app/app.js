@@ -6,10 +6,22 @@ const session = require('express-session');
 const bcrypt = require('bcryptjs');
 const KnexSessionStore = require('connect-session-knex')(session);
 const knex = require('../data/db');
+const path = require('path');
 
 const app = express();
 
-app.use(helmet());
+// app.use(
+//   helmet({
+//     contentSecurityPolicy: {
+//       directives: {
+//         defaultSrc: ["'self'"],
+//         scriptSrc: [`'self'`, "'unsafe-inline'"],
+//         styleSrc: ["'self'", 'fonts.googleapis.com'],
+//         fontSrc: ["'self'", 'fonts.googleapis.com'],
+//       },
+//     },
+//   })
+// );
 app.use(cookieParser());
 app.use(
   session({
@@ -25,9 +37,26 @@ app.use(
   })
 );
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      'http://localhost:3000',
+      'https://localhost:3000',
+      'http://localhost:3001',
+      'https://localhost:3001',
+    ],
+    credentials: true,
+    exposedHeaders: ['set-cookie'],
+  })
+);
 
-app.get('/', async (req, res) => {
+app.use(express.static(path.resolve('./build')));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.resolve('./build', 'index.html'));
+});
+
+app.get('/api', async (req, res) => {
   res.sendStatus(200);
 });
 
