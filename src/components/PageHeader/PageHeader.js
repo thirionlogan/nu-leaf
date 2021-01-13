@@ -32,7 +32,7 @@ function PageHeader(props) {
           >
             NuLeaf
           </Typography>
-          <Button variant='contained'>Login</Button>
+          <Button variant='contained' component={RouterLink} to='/login' >Login</Button>
         </Toolbar>
       </AppBar>
     </div>
