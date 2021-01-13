@@ -4,7 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import { Link as RouterLink} from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles((theme) => ({
@@ -13,12 +13,9 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
-  },
-  link: {
     textDecoration: 'none',
     color: 'white',
-    underline: 'none',
-  }
+  },
 }));
 
 function PageHeader(props) {
@@ -28,10 +25,12 @@ function PageHeader(props) {
     <div className={classes.root}>
       <AppBar position='static'>
         <Toolbar>
-          <Typography variant='h6' className={classes.title}>
-            <Link className={classes.link} component={RouterLink} to='/'>
+          <Typography
+            variant='h6'
+            className={classes.title}
+            component={RouterLink}
+            to='/'>
               NuLeaf
-            </Link>
           </Typography>
           <Button variant='contained'>Login</Button>
         </Toolbar>
