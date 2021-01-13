@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 
 import {
   Container,
@@ -62,11 +62,9 @@ function LandingPage(props) {
           NuLeaf
         </Typography>
         <Container maxWidth='xs' className={classes.buttonContainer}>
-          <Link to="/register">
-            <Button  variant='contained' color='primary'>
+            <Button  variant='contained' color='primary' component={RouterLink} to='/register'>
               Sign up today
             </Button>
-          </Link>
         </Container>
       </Container>
     </main>
