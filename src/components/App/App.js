@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { CssBaseline } from '@material-ui/core';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import LandingPage from '../LandingPage/LandingPage';
 import PageHeader from '../PageHeader/PageHeader';
+import RegistrationPage from '../RegistrationPage/RegistrationPage';
+
 
 const theme = createMuiTheme({
   palette: {
@@ -24,6 +26,7 @@ function App() {
           <PageHeader />
           <Switch>
             <Route exact path='/' component={LandingPage} />
+            <Route path='/register' component={RegistrationPage}/>
           </Switch>
         </div>
       </Router>
