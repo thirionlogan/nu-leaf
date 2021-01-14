@@ -9,10 +9,10 @@ describe('Endpoints', () => {
     });
   });
 
-  it('should respond with a 200', async () => {
+  it('should respond with a 200 and some html', async () => {
     const response = await request(app).get('/');
     expect(response.statusCode).toBe(200);
-    expect(response.text).toBe('OK');
+    expect(response.text).toContain('<!doctype html>');
   });
 
   it('should respond with a 404', async () => {
