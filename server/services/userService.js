@@ -34,4 +34,14 @@ const createUser = async ({
   });
 };
 
-module.exports = { createUser };
+const authenticateLogin = ({ email, password }) => {
+  return User.where({ email })
+    .fetch({ require: true })
+    .then(({ attributes }) => {
+      if (!bcrypt.compareSync(password, attributes.password))
+        throw new Error('Password Does not match');
+      else return { ...attributes, password: undefined };
+    });
+};
+
+module.exports = { createUser, authenticateLogin };

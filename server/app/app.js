@@ -9,7 +9,7 @@ const knex = require('../data/db');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 const nunjucks = require('nunjucks');
-const { createUser } = require('../services/userService');
+const { createUser, authenticateLogin } = require('../services/userService');
 
 const app = express();
 
@@ -83,13 +83,23 @@ app.get('/', (req, res) => {
   });
 });
 
-app.get('/api/register', async (req, res) => {
+app.post('/api/register', async (req, res) => {
   createUser(req.body)
     .then(() => {
       res.sendStatus(201);
     })
     .catch((err) => {
       res.sendStatus(422);
+    });
+});
+
+app.post('/api/login', async (req, res) => {
+  authenticateLogin(req.body)
+    .then((user) => {
+      res.status(200).send(user);
+    })
+    .catch(() => {
+      res.sendStatus(401);
     });
 });
 
