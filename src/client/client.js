@@ -7,7 +7,12 @@ const instance = axios.create({
 });
 
 module.exports = {
-  ping: () => {
-    return instance.get('/');
-  },
+  registerUser: ({ email, firstName, lastName, password, confirmPassword }) =>
+    instance.post('/register', {
+      email,
+      firstName,
+      lastName,
+      password,
+      confirmPassword,
+    }),
 };
