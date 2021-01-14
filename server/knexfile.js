@@ -2,7 +2,7 @@ require('dotenv').config({ path: '../.env' });
 module.exports = {
   development: {
     client: 'pg',
-    connection: {
+    connection: process.env.DATABASE_URL || {
       host: process.env.DB_HOST || 'localhost',
       database: process.env.DB_NAME,
       user: process.env.DB_USER || 'postgres',
@@ -22,7 +22,7 @@ module.exports = {
     },
     seeds: { directory: './server/data/seeds' },
   },
-  production: {
+  production: process.env.DATABASE_URL || {
     client: 'pg',
     connection: {
       database: process.env.DB_NAME,
