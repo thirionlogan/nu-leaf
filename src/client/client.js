@@ -20,4 +20,5 @@ module.exports = {
       email,
       password,
     }),
+  logout: () => instance.post('/register'),
 };

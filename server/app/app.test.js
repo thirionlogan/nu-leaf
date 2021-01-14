@@ -112,4 +112,12 @@ describe('Endpoints', () => {
       expect(response.text).toBe('Unauthorized');
     });
   });
+
+  describe('POST /api/logout', () => {
+    it('should respond with 200 and log out', async () => {
+      const response = await request(app).post('/api/logout');
+      expect(response.statusCode).toBe(200);
+      expect(response.text).toBe('OK');
+    });
+  });
 });
