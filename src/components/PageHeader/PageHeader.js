@@ -34,7 +34,8 @@ function PageHeader(props) {
             NuLeaf
           </Typography>
           <ButtonGroup size="small" color="secondary" variant="contained">
-            <Button  component={RouterLink} to='/login' >Login</Button>
+            <Button component={RouterLink} to='/search' >Search</Button>
+            <Button component={RouterLink} to='/login' >Login</Button>
             <Button component={RouterLink} to='/' >Log Out</Button>
           </ButtonGroup>
         </Toolbar>
