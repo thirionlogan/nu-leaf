@@ -7,8 +7,20 @@ const bcrypt = require('bcryptjs');
 const KnexSessionStore = require('connect-session-knex')(session);
 const knex = require('../data/db');
 const path = require('path');
+const { v4: uuidv4 } = require('uuid');
+const nunjucks = require('nunjucks');
 
 const app = express();
+
+nunjucks.configure('build', {
+  autoescape: true,
+  express: app,
+});
+
+app.use((req, res, next) => {
+  res.locals.styleNonce = Buffer.from(uuidv4()).toString('base64');
+  next();
+});
 
 app.use(
   helmet({
@@ -17,8 +29,14 @@ app.use(
         ...helmet.contentSecurityPolicy.getDefaultDirectives(),
         'default-src': ["'self'"],
         'script-src': ["'self'"],
-        'style-src': ["'self'", '*.googleapis.com'],
-        'font-src': ["'self'", '*.googleapis.com'],
+        'style-src': [
+          "'self'",
+          'fonts.googleapis.com',
+          'fonts.gstatic.com',
+          (req, res) => `'nonce-${res.locals.styleNonce}'`,
+        ],
+        'font-src': ["'self'", 'fonts.googleapis.com', 'fonts.gstatic.com'],
+        'img-src': ["'self'", 'images.squarespace-cdn.com', 'data:'],
       },
     },
   })
@@ -51,10 +69,17 @@ app.use(
   })
 );
 
-app.use(express.static(path.resolve('./build')));
+app.use('/static', express.static(path.resolve('./build/static')));
+app.use(
+  '/asset-manifest.json',
+  express.static(path.resolve('./build/asset-manifest.json'))
+);
+app.use('/robots.txt', express.static(path.resolve('./build/robots.txt')));
 
 app.get('/', (req, res) => {
-  res.sendFile(path.resolve('./build', 'index.html'));
+  res.render('index.html', {
+    styleNonce: res.locals.styleNonce,
+  });
 });
 
 app.get('/api', async (req, res) => {
