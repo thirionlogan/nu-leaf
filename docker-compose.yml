@@ -9,6 +9,7 @@ services:
       DATABASE_URL: postgres://user:pass@postgres:5432/db
       NODE_ENV: development
       PORT: 3000
+      INLINE_RUNTIME_CHUNK: 'false'
     ports:
       - '3000:3000'
     command: npm run server
