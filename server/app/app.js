@@ -1,4 +1,5 @@
 const express = require('express');
+const rateLimit = require('express-rate-limit');
 const cors = require('cors');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
@@ -93,7 +94,18 @@ app.post('/api/register', async (req, res) => {
     });
 });
 
-app.post('/api/login', async (req, res) => {
+const limitReached = (req, res) => {
+  console.warn({ ip: req.ip }, 'Rate limiter triggered');
+};
+const options = {
+  windowMs: 60000,
+  max: 5,
+  onLimitReached: limitReached,
+  handler: limitReached,
+};
+const rateLimiter = rateLimit(options);
+
+app.post('/api/login', rateLimiter, async (req, res) => {
   authenticateLogin(req.body)
     .then((user) => {
       req.session.user = user;
