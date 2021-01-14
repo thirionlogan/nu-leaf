@@ -15,4 +15,9 @@ module.exports = {
       password,
       confirmPassword,
     }),
+  login: ({ email, password }) =>
+    instance.post('/register', {
+      email,
+      password,
+    }),
 };
