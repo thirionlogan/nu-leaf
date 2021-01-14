@@ -5,6 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { Link as RouterLink } from 'react-router-dom';
+import { ButtonGroup } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,7 +33,11 @@ function PageHeader(props) {
           >
             NuLeaf
           </Typography>
-          <Button variant='contained' component={RouterLink} to='/login' >Login</Button>
+          <ButtonGroup size="small" color="secondary" variant="contained">
+            <Button component={RouterLink} to='/search' >Search</Button>
+            <Button component={RouterLink} to='/login' >Login</Button>
+            <Button component={RouterLink} to='/' >Log Out</Button>
+          </ButtonGroup>
         </Toolbar>
       </AppBar>
     </div>
