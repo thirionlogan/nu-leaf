@@ -15,6 +15,12 @@ describe('Endpoints', () => {
     expect(response.text).toContain('<!doctype html>');
   });
 
+  it('should respond with a 200', async () => {
+    const response = await request(app).get('/api');
+    expect(response.statusCode).toBe(200);
+    expect(response.text).toContain('OK');
+  });
+
   it('should respond with a 404', async () => {
     const response = await request(app).get('/doesNotExist');
     expect(response.statusCode).toBe(404);
