@@ -96,11 +96,17 @@ app.post('/api/register', async (req, res) => {
 app.post('/api/login', async (req, res) => {
   authenticateLogin(req.body)
     .then((user) => {
+      req.session.user = user;
       res.status(200).send(user);
     })
     .catch(() => {
       res.sendStatus(401);
     });
+});
+
+app.post('/api/logout', async (req, res) => {
+  req.session.user = undefined;
+  res.sendStatus(200);
 });
 
 app.use((req, res) => {
