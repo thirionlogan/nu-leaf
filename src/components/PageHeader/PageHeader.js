@@ -17,8 +17,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function PageHeader({ user }) {
+function PageHeader({ user, logoutClient, handleSetUser }) {
   const classes = useStyles();
+
+  const handleLogout = () => {
+    logoutClient();
+    handleSetUser(false);
+  };
 
   return (
     <div className={classes.root}>
@@ -33,7 +38,12 @@ function PageHeader({ user }) {
             NuLeaf
           </Typography>
           {user ? (
-            <Button variant='contained' component={RouterLink} to='/login'>
+            <Button
+              variant='contained'
+              component={RouterLink}
+              to='/login'
+              onClick={handleLogout}
+            >
               Log Out
             </Button>
           ) : (
