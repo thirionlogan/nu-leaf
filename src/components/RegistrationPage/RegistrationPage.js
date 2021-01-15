@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function RegistrationPage({ registerUser }) {
+export default function RegistrationPage({ registerUser, user }) {
   const classes = useStyles();
 
   const [firstName, setFirstName] = useState('');
@@ -63,6 +63,9 @@ export default function RegistrationPage({ registerUser }) {
   useEffect(() => {
     setConfirmPasswordError('');
   }, [confirmPassword]);
+  useEffect(() => {
+    if (user) setRedirect(true);
+  }, []);
 
   const handleChangeFirstName = (event) => {
     setFirstName(event.target.value);
