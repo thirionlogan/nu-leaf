@@ -15,10 +15,10 @@ module.exports = {
       password,
       confirmPassword,
     }),
-  login: ({ email, password }) =>
-    instance.post('/register', {
+  loginClient: ({ email, password }) =>
+    instance.post('/login', {
       email,
       password,
     }),
-  logout: () => instance.post('/register'),
+  logoutClient: () => instance.post('/logout'),
 };
