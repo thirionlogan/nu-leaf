@@ -48,6 +48,7 @@ export default function LoginPage({ loginClient, handleLogin, user }) {
   }, [password]);
 
   const handleSubmit = (event) => {
+    event.preventDefault();
     if (email.trim() && password.trim()) {
       loginClient({ email, password }).then((res) => {
         handleLogin(res.data);
