@@ -24,6 +24,11 @@ describe('PageHeader', () => {
     it('should render Log out button', () => {
       expect(component.find(Button).text()).toBe('Log Out');
     });
+    it('should log out when button is clicked', () => {
+      component.find(Button).simulate('click');
+      expect(mockLogoutClient).toBeCalled();
+      expect(handleSetUser).toBeCalled();
+    });
   });
   describe('when the user is logged out', () => {
     beforeEach(() => {
