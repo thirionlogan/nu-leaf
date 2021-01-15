@@ -55,7 +55,7 @@ function CreateResolutionPage({ user, createResolution }) {
 
   return (
     <Container component='main' maxWidth='xs'>
-      {/* {user ? null : <Redirect to='/login' />} */}
+      {user ? null : <Redirect to='/login' />}
       {redirect ? <Redirect to='/home' /> : null}
       <div className={classes.paper}>
         <Typography component='h1' variant='h5'>
