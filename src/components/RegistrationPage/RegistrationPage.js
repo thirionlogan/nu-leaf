@@ -65,7 +65,7 @@ export default function RegistrationPage({ registerUser, user }) {
   }, [confirmPassword]);
   useEffect(() => {
     if (user) setRedirect(true);
-  }, []);
+  }, [user]);
 
   const handleChangeFirstName = (event) => {
     setFirstName(event.target.value);

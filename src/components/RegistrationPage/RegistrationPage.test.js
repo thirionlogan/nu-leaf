@@ -73,6 +73,7 @@ describe('RegistrationPage', () => {
       .find('#confirmPassword')
       .find('input')
       .simulate('change', { target: { value: newUser.password } });
+    component.find(Button).simulate('click');
     expect(mockRegisterUser).not.toBeCalled();
   });
   it('should require Last Name', () => {
@@ -94,6 +95,7 @@ describe('RegistrationPage', () => {
       .find('#confirmPassword')
       .find('input')
       .simulate('change', { target: { value: newUser.password } });
+    component.find(Button).simulate('click');
     expect(mockRegisterUser).not.toBeCalled();
   });
   it('should require Email', () => {
@@ -115,6 +117,7 @@ describe('RegistrationPage', () => {
       .find('#confirmPassword')
       .find('input')
       .simulate('change', { target: { value: newUser.password } });
+    component.find(Button).simulate('click');
     expect(mockRegisterUser).not.toBeCalled();
   });
   it('should require Password', () => {
@@ -137,6 +140,7 @@ describe('RegistrationPage', () => {
       .find('#confirmPassword')
       .find('input')
       .simulate('change', { target: { value: newUser.password } });
+    component.find(Button).simulate('click');
     expect(mockRegisterUser).not.toBeCalled();
   });
   it('should require Confirm Password', () => {
@@ -159,6 +163,7 @@ describe('RegistrationPage', () => {
       .find('#password')
       .find('input')
       .simulate('change', { target: { value: newUser.password } });
+    component.find(Button).simulate('click');
     expect(mockRegisterUser).not.toBeCalled();
   });
   it('should require Confirm Password to be the same as Password', () => {
@@ -185,6 +190,7 @@ describe('RegistrationPage', () => {
       .find('#confirmPassword')
       .find('input')
       .simulate('change', { target: { value: 'different password' } });
+    component.find(Button).simulate('click');
     expect(mockRegisterUser).not.toBeCalled();
   });
 });
