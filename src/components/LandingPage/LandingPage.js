@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
-
+import { Link as RouterLink, Redirect } from 'react-router-dom';
 import {
   Container,
   Typography,
@@ -30,10 +29,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function LandingPage(props) {
+function LandingPage({ user }) {
   const classes = useStyles();
   return (
     <main className={classes.root}>
+      {user ? <Redirect to='/home' /> : null}
       <Typography
         component='div'
         align='center'
@@ -62,9 +62,14 @@ function LandingPage(props) {
           NuLeaf
         </Typography>
         <Container maxWidth='xs' className={classes.buttonContainer}>
-            <Button  variant='contained' color='primary' component={RouterLink} to='/register'>
-              Sign up today
-            </Button>
+          <Button
+            variant='contained'
+            color='primary'
+            component={RouterLink}
+            to='/register'
+          >
+            Sign up today
+          </Button>
         </Container>
       </Container>
     </main>

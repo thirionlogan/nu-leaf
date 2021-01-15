@@ -4,6 +4,8 @@ WORKDIR /usr/src/app
 
 ENV INLINE_RUNTIME_CHUNK false
 
+ENV API_URL http://localhost:3000/api
+
 COPY package*.json ./
 
 RUN npm install

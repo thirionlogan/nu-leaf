@@ -6,7 +6,15 @@ import LandingPage from '../LandingPage/LandingPage';
 import PageHeader from '../PageHeader/PageHeader';
 import RegistrationPage from '../RegistrationPage/RegistrationPage';
 import LoginPage from '../LoginPage/LoginPage';
-import { registerUser, loginClient, logoutClient } from '../../client/client';
+import HomePage from '../HomePage/HomePage';
+import CreateResolutionPage from '../CreateResolutionPage/CreateResolutionPage';
+import {
+  registerUser,
+  loginClient,
+  logoutClient,
+  getAllResolutions,
+  createResolution,
+} from '../../client/client';
 
 const theme = createMuiTheme({
   palette: {
@@ -36,7 +44,9 @@ function App() {
             handleSetUser={handleSetUser}
           />
           <Switch>
-            <Route exact path='/' component={LandingPage} user={user} />
+            <Route exact path='/'>
+              <LandingPage user={user} />
+            </Route>
             <Route path='/register'>
               <RegistrationPage registerUser={registerUser} user={user} />
             </Route>
@@ -45,6 +55,15 @@ function App() {
                 user={user}
                 loginClient={loginClient}
                 handleLogin={handleSetUser}
+              />
+            </Route>
+            <Route path='/home'>
+              <HomePage user={user} getAllResolutions={getAllResolutions} />
+            </Route>
+            <Route path='/createResolution'>
+              <CreateResolutionPage
+                user={user}
+                createResolution={createResolution}
               />
             </Route>
           </Switch>
