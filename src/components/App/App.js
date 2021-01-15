@@ -6,6 +6,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import PageHeader from '../PageHeader/PageHeader';
 import RegistrationPage from '../RegistrationPage/RegistrationPage';
 import LoginPage from '../LoginPage/LoginPage'
+import UserPosts from '../UserPosts/UserPosts'
 
 const theme = createMuiTheme({
   palette: {
@@ -28,6 +29,7 @@ function App() {
             <Route exact path='/' component={LandingPage} />
             <Route path='/register' component={RegistrationPage} />
             <Route path='/login' component={LoginPage} />
+            <Route path='/userposts' component={UserPosts} />
           </Switch>
         </div>
       </Router>
