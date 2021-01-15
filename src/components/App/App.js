@@ -6,7 +6,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import PageHeader from '../PageHeader/PageHeader';
 import RegistrationPage from '../RegistrationPage/RegistrationPage';
 import LoginPage from '../LoginPage/LoginPage';
-import { registerUser, loginClient } from '../../client/client';
+import { registerUser, loginClient, logoutClient } from '../../client/client';
 
 const theme = createMuiTheme({
   palette: {
@@ -30,7 +30,11 @@ function App() {
       <Router>
         <CssBaseline />
         <div className='App'>
-          <PageHeader user={user} />
+          <PageHeader
+            user={user}
+            logoutClient={logoutClient}
+            handleSetUser={handleSetUser}
+          />
           <Switch>
             <Route exact path='/' component={LandingPage} user={user} />
             <Route path='/register'>
