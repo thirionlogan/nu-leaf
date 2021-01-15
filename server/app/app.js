@@ -11,7 +11,15 @@ const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 const nunjucks = require('nunjucks');
 const { createUser, authenticateLogin } = require('../services/userService');
-
+const {
+  getAllResolutions,
+  getResolutionById,
+  createResolution,
+  patchResolution,
+  deleteResolution,
+} = require('../services/resolutionService');
+const errorHandler = require('../middleware/errorHandler');
+const authenticationRequired = require('../middleware/authenticationRequired');
 const app = express();
 
 nunjucks.configure('build', {
@@ -71,6 +79,8 @@ app.use(
   })
 );
 
+app.use(errorHandler);
+
 app.use('/static', express.static(path.resolve('./build/static')));
 app.use(
   '/asset-manifest.json',
@@ -119,6 +129,54 @@ app.post('/api/login', rateLimiter, async (req, res) => {
 app.post('/api/logout', async (req, res) => {
   req.session.user = undefined;
   res.sendStatus(200);
+});
+
+app.get('/api/resolution', (req, res) => {
+  getAllResolutions().then((resolutions) => {
+    res.status(200).send(resolutions);
+  });
+});
+
+app.get('/api/resolution/:id', (req, res) => {
+  getResolutionById({ id: req.params.id })
+    .then((resolution) => {
+      res.status(200).send(resolution);
+    })
+    .catch(() => {
+      res.sendStatus(404);
+    });
+});
+
+app.post('/api/resolution', authenticationRequired, (req, res) => {
+  createResolution({
+    userId: req.session.user.id,
+    content: req.body.content,
+  })
+    .then(() => {
+      res.sendStatus(201);
+    })
+    .catch(() => {
+      res.sendStatus(422);
+    });
+});
+
+app.patch('/api/resolution/:id', authenticationRequired, (req, res) => {
+  patchResolution({ id: req.params.id, content: req.body.content })
+    .then(() => {
+      res.status(204).send();
+    })
+    .catch(() => {
+      res.sendStatus(422);
+    });
+});
+app.delete('/api/resolution/:id', authenticationRequired, (req, res) => {
+  deleteResolution({ id: req.params.id })
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch(() => {
+      res.sendStatus(404);
+    });
 });
 
 app.use((req, res) => {
