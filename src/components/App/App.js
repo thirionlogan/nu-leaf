@@ -7,11 +7,13 @@ import PageHeader from '../PageHeader/PageHeader';
 import RegistrationPage from '../RegistrationPage/RegistrationPage';
 import LoginPage from '../LoginPage/LoginPage';
 import HomePage from '../HomePage/HomePage';
+import CreateResolutionPage from '../CreateResolutionPage/CreateResolutionPage';
 import {
   registerUser,
   loginClient,
   logoutClient,
   getAllResolutions,
+  createResolution,
 } from '../../client/client';
 
 const theme = createMuiTheme({
@@ -57,6 +59,12 @@ function App() {
             </Route>
             <Route path='/home'>
               <HomePage user={user} getAllResolutions={getAllResolutions} />
+            </Route>
+            <Route path='/createResolution'>
+              <CreateResolutionPage
+                user={user}
+                createResolution={createResolution}
+              />
             </Route>
           </Switch>
         </div>

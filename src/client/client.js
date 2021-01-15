@@ -23,9 +23,8 @@ module.exports = {
   logoutClient: () => instance.post('/logout'),
   getAllResolutions: () => instance.get('/resolution'),
   getResloutionById: (id) => instance.get(`/resolution/${id}`),
-  createResolution: ({ content }) =>
-    instance.post('/resolution').send({ content }),
+  createResolution: ({ content }) => instance.post('/resolution', { content }),
   patchResolution: ({ id, content }) =>
-    instance.patch(`/resolution/${id}`).send({ content }),
+    instance.patch(`/resolution/${id}`, { content }),
   deleteResolution: ({ id }) => instance.delete(`/resolution/${id}`),
 };
