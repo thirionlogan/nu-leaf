@@ -54,6 +54,7 @@ function Resolution({ resolution }) {
         >
           {favorited ? <FavoriteIcon /> : <FavoriteBorderIcon />}
         </IconButton>
+        {favorited ? '1' : '0'}
         <IconButton
           aria-label='bookmark'
           size='small'
@@ -61,6 +62,7 @@ function Resolution({ resolution }) {
         >
           {bookmarked ? <BookmarkIcon /> : <BookmarkBorderIcon />}
         </IconButton>
+        {bookmarked ? '1' : '0'}
       </div>
     </Paper>
   );
