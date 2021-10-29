@@ -3,7 +3,7 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "monthly"
     assignees:
       - "{{ github.repository_owner }}"
     reviewers:
@@ -13,7 +13,7 @@ updates:
   - package-ecosystem: "npm"
     directory: "/"
     schedule: 
-      interval: "daily"
+      interval: "monthly"
     assignees:
       - "{{ github.repository_owner }}"
     reviewers:
